@@ -82,7 +82,7 @@
 											{displayWtPrice p=$product->getPrice($taxes_behavior)+($product->getPrice($taxes_behavior)* $product->specificPrice.reduction)}
 										</span>
 										<span class="price-percent-reduction">
-											-{$product->specificPrice.reduction*100|floatval}%
+											-{($product->specificPrice.reduction*100)|round|intval}%
 										</span>
 									{else}
 										<span class="old-price product-price">
@@ -137,12 +137,10 @@
 								<div class="button-container">
 									{if (!$product->hasAttributes() OR (isset($add_prod_display) AND ($add_prod_display == 1))) AND $product->minimal_quantity == 1 AND $product->customizable != 2 AND !$PS_CATALOG_MODE}
 										{if ($product->quantity > 0 OR $product->allow_oosp)}
-											<a class="button ajax_add_to_cart_button btn btn-default" data-id-product="{$product->id}" href="{$link->getPageLink('cart', true, NULL, "qty=1&amp;id_product={$product->id}&amp;token={$static_token}&amp;add")|escape:'html':'UTF-8'}" title="{l s='Add to cart'}">
-												<span>{l s='Add to cart'}</span>
-											</a>
+											{include file="$tpl_dir./buy-button.tpl" id=$product->id|intval}
 										{else}
-											<span class="ajax_add_to_cart_button button btn btn-default disabled">
-												<span>{l s='Add to cart'}</span>
+											<span class="button btn btn-default disabled">
+												<span>{l s='No more stock'}</span>
 											</span>
 										{/if}
 									{/if}

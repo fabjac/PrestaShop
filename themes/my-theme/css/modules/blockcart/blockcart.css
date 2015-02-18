@@ -18,6 +18,7 @@
     padding: 4px 0px 2px 0px; }
 
 .shopping_cart {
+  display: none;   /* FJ hack */
   width: 270px; }
   @media (max-width: 480px) {
     .shopping_cart {
