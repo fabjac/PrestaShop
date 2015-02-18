@@ -1,0 +1,5 @@
+html > body#index.index.hide-left-column.hide-right-column.lang_en > div#page > div.columns-container > div#columns.container > div.row > div#center_column.center_column.col-xs-12.col-sm-12 > ul#home-page-tabs.nav.nav-tabs.clearfix
+{
+  display:none;
+}
+
