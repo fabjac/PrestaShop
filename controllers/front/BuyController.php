@@ -27,7 +27,6 @@ class BuyControllerCore extends FrontController
 
 		// Get page main parameters
 		$this->id_product = (int)Tools::getValue('id_product', null);
-		$this->id_product_attribute = (int)Tools::getValue('id_product_attribute', Tools::getValue('ipa'));
 	}
 
 	public function postProcess()
@@ -40,6 +39,7 @@ class BuyControllerCore extends FrontController
 	      $supplier = new Supplier((int) $product->id_supplier);
 
 	      if (Validate::isLoadedObject($supplier)) {
+		$this->saveClick();
 		header('Location: http://www.shareasale.com/m-pr.cfm?merchantID=' . $supplier->name . '&userID=1050945&atc=1&productID=' . $product->reference);
 	      }
 	      else
@@ -49,4 +49,12 @@ class BuyControllerCore extends FrontController
 	      header('Location: /404-not-found');
 	  }
 	}
+
+	private function saveClick()
+	{
+	  $db = Db::getInstance();
+	  $sql = 'update ' . _DB_PREFIX_ . 'product set click_counter=click_counter+1 where id_product=' . $this->id_product;
+	  $db->execute($sql);
+	}
+
 }
