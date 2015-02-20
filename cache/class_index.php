@@ -1319,6 +1319,18 @@
     'type' => 'class',
     'override' => false,
   ),
+  'BuyController' => 
+  array (
+    'path' => '',
+    'type' => 'class',
+    'override' => false,
+  ),
+  'BuyControllerCore' => 
+  array (
+    'path' => 'controllers/front/BuyController.php',
+    'type' => 'class',
+    'override' => false,
+  ),
   'CMS' => 
   array (
     'path' => '',
@@ -2408,6 +2420,18 @@
   'LinkCore' => 
   array (
     'path' => 'classes/Link.php',
+    'type' => 'class',
+    'override' => false,
+  ),
+  'LinksController' => 
+  array (
+    'path' => '',
+    'type' => 'class',
+    'override' => false,
+  ),
+  'LinksControllerCore' => 
+  array (
+    'path' => 'controllers/front/LinksController.php',
     'type' => 'class',
     'override' => false,
   ),
