@@ -50,7 +50,7 @@
 			<div class="product-container" itemscope itemtype="http://schema.org/Product">
 				<div class="left-block">
 					<div class="product-image-container">
-						<a class="product_img_link" href="{$product.link|escape:'html':'UTF-8'}" title="{$product.name|escape:'html':'UTF-8'}" itemprop="url">
+						<a class="product_img_link" target="_blank" href="{$link->getPageLink('buy.php',false, NULL, "id_product={$product.id_product}&amp;token={$static_token}", false)|escape:'html':'UTF-8'}" title="{$product.name|escape:'html':'UTF-8'}" itemprop="url">
 							<img class="replace-2x img-responsive" src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'home_default')|escape:'html':'UTF-8'}" alt="{if !empty($product.legend)}{$product.legend|escape:'html':'UTF-8'}{else}{$product.name|escape:'html':'UTF-8'}{/if}" title="{if !empty($product.legend)}{$product.legend|escape:'html':'UTF-8'}{else}{$product.name|escape:'html':'UTF-8'}{/if}" {if isset($homeSize)} width="{$homeSize.width}" height="{$homeSize.height}"{/if} itemprop="image" />
 						</a>
 						{if isset($quick_view) && $quick_view}
@@ -131,9 +131,11 @@
 						{if ($product.id_product_attribute == 0 || (isset($add_prod_display) && ($add_prod_display == 1))) && $product.available_for_order && !isset($restricted_country_mode) && $product.minimal_quantity <= 1 && $product.customizable != 2 && !$PS_CATALOG_MODE}
 							{if (!isset($product.customization_required) || !$product.customization_required) && ($product.allow_oosp || $product.quantity > 0)}
 								{include file="$tpl_dir./buy-button.tpl" id=$product.id_product|intval}
+								{include file="$tpl_dir./more-button.tpl" id=$product.id_product|intval}
 							{else}
 								<span class="button btn btn-default disabled">
 								    {include file="$tpl_dir./buy-button.tpl" id=$product.id_product|intval}
+								    {include file="$tpl_dir./more-button.tpl" id=$product.id_product|intval}
 								</span>
 							{/if}
 						{/if}
