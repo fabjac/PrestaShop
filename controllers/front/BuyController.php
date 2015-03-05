@@ -52,8 +52,41 @@ class BuyControllerCore extends FrontController
 
 	private function saveClick()
 	{
+	  global $_SERVER;
 	  $db = Db::getInstance();
-	  $sql = 'update ' . _DB_PREFIX_ . 'product set click_counter=click_counter+1 where id_product=' . $this->id_product;
+	  $sql = 'insert into ' . _DB_PREFIX_ . 'stats_visitors (';
+	  $sql .= "date_day,";
+	  $sql .= "date_time,";
+	  $sql .= "addr,";
+	  $sql .= "host,";
+	  $sql .= "uri,";
+	  $sql .= "query_string,";
+	  $sql .= "user_agent,";
+	  $sql .= "lang,";
+	  $sql .= "referer,";
+	  $sql .= "id_product)";
+	  $sql .= " values ";
+	  $sql .= "('";
+	  $sql .= date("Ymd");
+	  $sql .= "','";
+	  $sql .= date("His");
+	  $sql .= "','";
+	  $sql .= $_SERVER["REMOTE_ADDR"];
+	  $sql .= "','";
+	  $sql .= $_SERVER["REMOTE_HOST"];
+	  $sql .= "','";
+	  $sql .= $_SERVER["SCRIPT_NAME"];
+	  $sql .= "','";
+	  $sql .= $_SERVER["QUERY_STRING"];
+	  $sql .= "','";
+	  $sql .= $_SERVER["HTTP_USER_AGENT"];
+	  $sql .= "','";
+	  $sql .= $_SERVER["HTTP_ACCEPT_LANGUAGE"];
+	  $sql .= "','";
+	  $sql .= $_SERVER["HTTP_REFERER"];
+	  $sql .= "',";
+	  $sql .= $this->id_product;
+	  $sql .= ")";
 	  $db->execute($sql);
 	}
 
