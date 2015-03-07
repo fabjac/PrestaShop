@@ -77,13 +77,13 @@ class BuyControllerCore extends FrontController
 	  $sql .= "','";
 	  $sql .= $_SERVER["SCRIPT_NAME"];
 	  $sql .= "','";
-	  $sql .= $_SERVER["QUERY_STRING"];
+	  $sql .= $db->escape($_SERVER["QUERY_STRING"]);
 	  $sql .= "','";
-	  $sql .= $_SERVER["HTTP_USER_AGENT"];
+	  $sql .= $db->escape($_SERVER["HTTP_USER_AGENT"]);
 	  $sql .= "','";
-	  $sql .= $_SERVER["HTTP_ACCEPT_LANGUAGE"];
+	  $sql .= $db->escape($_SERVER["HTTP_ACCEPT_LANGUAGE"]);
 	  $sql .= "','";
-	  $sql .= $_SERVER["HTTP_REFERER"];
+	  $sql .= $db->escape($_SERVER["HTTP_REFERER"]);
 	  $sql .= "',";
 	  $sql .= $this->id_product;
 	  $sql .= ")";
